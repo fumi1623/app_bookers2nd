@@ -21,6 +21,7 @@ class UsersController < ApplicationController
       flash[:update] = "User infomation was successfully updated."
       redirect_to user_path(@user.id)
     else
+      flash[:danger] = "Error message users_controller"
       render :edit
     end
   end
