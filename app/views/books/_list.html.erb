@@ -9,7 +9,7 @@
 
     <td>
       <%= link_to book_path(book.id), target: "_blank" do %>
-        <%= book.title %>
+        <%=book.title %>
       <% end %>
     </td>
 
@@ -19,3 +19,5 @@
 
 <% end %>
 <%= paginate books %>
+
+<%= render 'books/list', books: @books %>

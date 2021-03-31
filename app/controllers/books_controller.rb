@@ -8,9 +8,11 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
+      flash[:create] = "Book was successfully created."
       redirect_to book_path(@book)
     else
-      render :new
+      flash[:danger] = "Error message"
+      redirect_to "/books"
     end
   end
 
@@ -34,6 +36,7 @@ class BooksController < ApplicationController
       flash[:update] = "Book was successfully updated."
       redirect_to book_path(@book)
     else
+      flash[:danger] = "Error message"
       render :edit
     end
   end
