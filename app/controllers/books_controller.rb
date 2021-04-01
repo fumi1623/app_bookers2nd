@@ -11,8 +11,7 @@ class BooksController < ApplicationController
       flash[:create] = "Book was successfully created."
       redirect_to book_path(@book)
     else
-      flash[:danger] = "Name is too short (minimum is 2 characters)"
-      redirect_to "/books"
+      # render :new
     end
   end
 
@@ -28,6 +27,11 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user == current_user
+      render "edit"
+    else
+      redirect_to "/books"
+    end
   end
 
   def update
@@ -36,7 +40,6 @@ class BooksController < ApplicationController
       flash[:update] = "Book was successfully updated."
       redirect_to book_path(@book)
     else
-      flash[:danger] = "Error message books_controller"
       render :edit
     end
   end
